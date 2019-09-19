@@ -1,7 +1,5 @@
 package com.cultivation.javaBasic.showYourIntelligence;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 @SuppressWarnings({"unused", "FieldCanBeLocal"})
 public class MyStack {
     private int[] storage;
@@ -26,7 +24,8 @@ public class MyStack {
 
         // TODO: Please push the value into the storage here.
         // <--start
-        throw new NotImplementedException();
+        storage[count] = value;
+        count++;
         // --end-->
     }
 
@@ -36,7 +35,12 @@ public class MyStack {
         // TODO: Please create a new array of size newCapacity. And update related fields
         // TODO: You SHOULD NOT USE COLLECTIONS OTHER THAN ARRAY.
         // <--start
-        throw new NotImplementedException();
+        int[] newCapacityArray = new int[newCapacity];
+
+        System.arraycopy(storage, 0, newCapacityArray, 0, storage.length);
+
+        storage = newCapacityArray;
+        capacity = newCapacity;
         // --end-->
     }
 
@@ -54,8 +58,11 @@ public class MyStack {
     private int pop() {
         // TODO: Please pop one element from the array.
         // <--start
-        // --end-->
+        count--;
+        int poppedValue = storage[count];
+        storage[count] = 0;
 
-        throw new UnsupportedOperationException("Stack is empty.");
+        return poppedValue;
+        // --end-->
     }
 }

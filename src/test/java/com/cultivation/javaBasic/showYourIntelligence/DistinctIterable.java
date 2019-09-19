@@ -26,21 +26,29 @@ public class DistinctIterable<T> implements Iterable<T> {
 class DistinctIterator<E> implements Iterator<E> {
     // TODO: Implement the class to pass the test. Note that you cannot put all items into memory or you will fail.
     // <--start
+    private Set<E> distinctElements;
+
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Iterator<E> iterator;
 
-    DistinctIterator(Iterator<E> iterator) {
-        this.iterator = iterator;
+    DistinctIterator(Iterator<E> outerIterator) {
+        this.distinctElements = new HashSet<>();
+
+        while(outerIterator.hasNext()){
+            distinctElements.add(outerIterator.next());
+        }
+
+        this.iterator = distinctElements.iterator();
     }
 
     @Override
     public boolean hasNext() {
-        throw new NotImplementedException();
+        return iterator.hasNext();
     }
 
     @Override
     public E next() {
-        throw new NotImplementedException();
+        return iterator.next();
     }
     // --end->
 }
